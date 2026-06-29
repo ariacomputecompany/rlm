@@ -1,0 +1,15 @@
+{
+  "protocol": {
+    "name": "rlm",
+    "version": 1
+  },
+  "session_id": "rlm_sess_01JABCDEF0123456789",
+  "session_name": "paper-scan",
+  "mode": "single_agent",
+  "container_id": "ctr_01JABCDEF0123456789",
+  "workspace_root": "/workspace",
+  "state_root": "/workspace/.quilt/rlm",
+  "created_at": "2026-01-10T10:00:00Z",
+  "updated_at": "2026-01-10T10:02:00Z",
+  "active_trajectory_id": "traj_01JABCDEF0123456789"
+}

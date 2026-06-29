@@ -1,0 +1,20 @@
+{
+  "protocol": {
+    "name": "rlm",
+    "version": 1
+  },
+  "trajectory_id": "traj_01JABCDEF0123456789",
+  "session_id": "rlm_sess_01JABCDEF0123456789",
+  "entrypoint": "quilt-rlm run --script app.py",
+  "provider": "openai",
+  "model": "gpt-5",
+  "environment": "quilt-nightly-rlm",
+  "status": "completed",
+  "started_at": "2026-01-10T10:00:05Z",
+  "finished_at": "2026-01-10T10:01:48Z",
+  "artifact_paths": [
+    "/workspace/.quilt/rlm/artifacts/traj_01JABCDEF0123456789/stdout.txt",
+    "/workspace/.quilt/rlm/artifacts/traj_01JABCDEF0123456789/trajectory.jsonl"
+  ],
+  "metadata_path": "/workspace/.quilt/rlm/artifacts/traj_01JABCDEF0123456789/manifest.json"
+}

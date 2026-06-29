@@ -1,0 +1,19 @@
+{
+  "protocol": {
+    "name": "rlm",
+    "version": 1
+  },
+  "mesh_id": "mesh_01JABCDEF0123456789",
+  "session_id": "rlm_mesh_01JABCDEF0123456789",
+  "agent_id": "worker-1",
+  "role": "worker",
+  "workspace_root": "/workspace",
+  "jets_namespace": "tenant.demo.rlm.mesh_01JABCDEF0123456789",
+  "jets_inbox": "tenant.demo.rlm.mesh_01JABCDEF0123456789.worker-1",
+  "jets_dlq": "tenant.demo.rlm.mesh_01JABCDEF0123456789.worker-1.dlq",
+  "coordinator_alias": "rlm-coordinator",
+  "provider_env_allowlist": [
+    "OPENAI_API_KEY",
+    "ANTHROPIC_API_KEY"
+  ]
+}

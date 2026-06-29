@@ -1,0 +1,20 @@
+{
+  "protocol": {
+    "name": "rlm",
+    "version": 1
+  },
+  "message_id": "msg_01JABCDEF0123456789",
+  "mesh_id": "mesh_01JABCDEF0123456789",
+  "session_id": "rlm_mesh_01JABCDEF0123456789",
+  "from_agent_id": "coordinator",
+  "to_agent_id": "worker-1",
+  "topic": "task.assign",
+  "kind": "task",
+  "payload": {
+    "task_id": "task_01JABCDEF0123456789",
+    "entrypoint": "quilt-rlm run --script worker.py",
+    "context_path": "/workspace/tasks/task-01/input.json"
+  },
+  "created_at": "2026-01-10T11:05:00Z",
+  "requires_ack": true
+}

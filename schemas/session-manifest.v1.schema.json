@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ariacomputecompany/rlm/schemas/session-manifest.v1.schema.json",
+  "title": "RLM Session Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol",
+    "session_id",
+    "mode",
+    "container_id",
+    "workspace_root",
+    "state_root",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "rlm" },
+        "version": { "const": 1 }
+      }
+    },
+    "session_id": { "type": "string", "minLength": 1 },
+    "session_name": { "type": "string", "minLength": 1 },
+    "mode": {
+      "type": "string",
+      "enum": ["single_agent", "mesh_coordinator", "mesh_worker"]
+    },
+    "container_id": { "type": "string", "minLength": 1 },
+    "workspace_root": { "type": "string", "minLength": 1 },
+    "state_root": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "active_trajectory_id": { "type": "string", "minLength": 1 },
+    "mesh_id": { "type": "string", "minLength": 1 },
+    "metadata": { "type": "object" }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ariacomputecompany/rlm/schemas/jets-envelope.v1.schema.json",
+  "title": "RLM JETS Envelope v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol",
+    "message_id",
+    "mesh_id",
+    "session_id",
+    "from_agent_id",
+    "topic",
+    "kind",
+    "payload",
+    "created_at",
+    "requires_ack"
+  ],
+  "properties": {
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "rlm" },
+        "version": { "const": 1 }
+      }
+    },
+    "message_id": { "type": "string", "minLength": 1 },
+    "mesh_id": { "type": "string", "minLength": 1 },
+    "session_id": { "type": "string", "minLength": 1 },
+    "from_agent_id": { "type": "string", "minLength": 1 },
+    "to_agent_id": { "type": "string", "minLength": 1 },
+    "topic": { "type": "string", "minLength": 1 },
+    "kind": {
+      "type": "string",
+      "enum": ["task", "result", "status", "control", "artifact"]
+    },
+    "payload": { "type": "object" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "requires_ack": { "type": "boolean" }
+  }
+}

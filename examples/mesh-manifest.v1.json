@@ -1,0 +1,38 @@
+{
+  "protocol": {
+    "name": "rlm",
+    "version": 1
+  },
+  "mesh_id": "mesh_01JABCDEF0123456789",
+  "session_id": "rlm_mesh_01JABCDEF0123456789",
+  "workspace_root": "/workspace",
+  "volume_name": "rlm-mesh-workspace-01JABCDEF0123456789",
+  "jets_namespace": "tenant.demo.rlm.mesh_01JABCDEF0123456789",
+  "created_at": "2026-01-10T11:00:00Z",
+  "coordinator": {
+    "agent_id": "coordinator",
+    "role": "coordinator",
+    "container_id": "ctr_coord_01JABCDEF",
+    "container_name": "rlm-mesh-coordinator",
+    "dns_alias": "rlm-coordinator",
+    "jets_inbox": "tenant.demo.rlm.mesh_01JABCDEF0123456789.coordinator"
+  },
+  "workers": [
+    {
+      "agent_id": "worker-1",
+      "role": "worker",
+      "container_id": "ctr_worker1_01JABCDEF",
+      "container_name": "rlm-mesh-worker-1",
+      "dns_alias": "rlm-worker-1",
+      "jets_inbox": "tenant.demo.rlm.mesh_01JABCDEF0123456789.worker-1"
+    },
+    {
+      "agent_id": "worker-2",
+      "role": "worker",
+      "container_id": "ctr_worker2_01JABCDEF",
+      "container_name": "rlm-mesh-worker-2",
+      "dns_alias": "rlm-worker-2",
+      "jets_inbox": "tenant.demo.rlm.mesh_01JABCDEF0123456789.worker-2"
+    }
+  ]
+}

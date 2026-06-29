@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ariacomputecompany/rlm/schemas/agent-config.v1.schema.json",
+  "title": "RLM Agent Config v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol",
+    "mesh_id",
+    "session_id",
+    "agent_id",
+    "role",
+    "workspace_root",
+    "jets_namespace",
+    "jets_inbox",
+    "coordinator_alias"
+  ],
+  "properties": {
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "rlm" },
+        "version": { "const": 1 }
+      }
+    },
+    "mesh_id": { "type": "string", "minLength": 1 },
+    "session_id": { "type": "string", "minLength": 1 },
+    "agent_id": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "enum": ["coordinator", "worker"] },
+    "workspace_root": { "type": "string", "minLength": 1 },
+    "jets_namespace": { "type": "string", "minLength": 1 },
+    "jets_inbox": { "type": "string", "minLength": 1 },
+    "jets_dlq": { "type": "string", "minLength": 1 },
+    "coordinator_alias": { "type": "string", "minLength": 1 },
+    "provider_env_allowlist": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}
