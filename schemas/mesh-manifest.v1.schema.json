@@ -9,6 +9,8 @@
     "mesh_id",
     "session_id",
     "workspace_root",
+    "execution_boundary",
+    "accelerator",
     "volume_name",
     "coordinator",
     "workers",
@@ -28,6 +30,12 @@
     "mesh_id": { "type": "string", "minLength": 1 },
     "session_id": { "type": "string", "minLength": 1 },
     "workspace_root": { "type": "string", "minLength": 1 },
+    "execution_boundary": {
+      "$ref": "#/$defs/execution_boundary"
+    },
+    "accelerator": {
+      "$ref": "#/$defs/accelerator"
+    },
     "volume_name": { "type": "string", "minLength": 1 },
     "jets_namespace": { "type": "string", "minLength": 1 },
     "created_at": { "type": "string", "format": "date-time" },
@@ -50,7 +58,8 @@
         "container_id",
         "container_name",
         "dns_alias",
-        "jets_inbox"
+        "jets_inbox",
+        "accelerator"
       ],
       "properties": {
         "agent_id": { "type": "string", "minLength": 1 },
@@ -58,7 +67,68 @@
         "container_id": { "type": "string", "minLength": 1 },
         "container_name": { "type": "string", "minLength": 1 },
         "dns_alias": { "type": "string", "minLength": 1 },
-        "jets_inbox": { "type": "string", "minLength": 1 }
+        "jets_inbox": { "type": "string", "minLength": 1 },
+        "accelerator": {
+          "$ref": "#/$defs/accelerator"
+        }
+      }
+    },
+    "execution_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repl_scope",
+        "context_scope",
+        "admitted_context_roots"
+      ],
+      "properties": {
+        "repl_scope": {
+          "type": "string",
+          "const": "environment_only"
+        },
+        "context_scope": {
+          "type": "string",
+          "const": "workspace_only"
+        },
+        "admitted_context_roots": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "accelerator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gpu_passthrough_supported",
+        "gpu_requested",
+        "gpu_attached"
+      ],
+      "properties": {
+        "gpu_passthrough_supported": {
+          "type": "boolean"
+        },
+        "gpu_requested": {
+          "type": "boolean"
+        },
+        "gpu_attached": {
+          "type": "boolean"
+        },
+        "gpu_provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "device_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
       }
     }
   }

@@ -9,11 +9,20 @@ It defines two production surfaces:
 
 This repository does not replace upstream RLM research or inference code. It defines the production environment contract that lets Quilt host RLM workflows safely, repeatably, and with persistent session state.
 
+The core design rule is strict environment locality:
+
+- the REPL acts only on the filesystem that exists inside the Quilt environment
+- admitted context must be present inside that environment before execution begins
+- local files become RLM context only after explicit sync into `/workspace`
+- the protocol does not assume implicit access to the caller's laptop, editor state, or host filesystem
+
 ## Scope
 
 RLM in this repository is about:
 
 - remote isolated execution
+- environment-local REPL semantics
+- explicit context admission into the workspace
 - workspace and artifact persistence
 - trajectory and session manifests
 - helper CLI behavior inside the environment
@@ -38,6 +47,7 @@ Single-agent RLM mode provides:
 - optional local context sync into `/workspace`
 - named session reuse
 - persistent trajectories, artifacts, and workspace state
+- built-in accelerator scaffolding so the same session shape can run with or without GPU passthrough
 - no Quilt-specific RLM code required for the happy path
 
 ### `--rlm-mesh`
@@ -50,6 +60,7 @@ Mesh mode provides:
 - stable ICC DNS aliases for peer discovery
 - JETS inbox, publish, ack, and replay semantics for coordination
 - resumable session state and inspectable message history
+- the same accelerator contract per agent when GPU-backed execution is needed
 
 ## Why Quilt
 
@@ -62,6 +73,7 @@ Quilt adds the production environment boundary around that workflow:
 - persistent workspace and trajectory storage
 - volume-backed shared data
 - container-scoped or session-scoped credentials
+- optional GPU-capable runtime attachment through the existing Quilt accelerator surface
 - ICC and JETS for multi-agent coordination
 
 That is the intended split:
@@ -94,6 +106,7 @@ The helper standardizes:
 - trajectory layout
 - session manifest format
 - provider env forwarding
+- accelerator metadata exposure
 - mesh bootstrap configuration
 
 ## Workspace Layout
@@ -118,6 +131,8 @@ Subdirectories:
 - `/workspace/.quilt/rlm/manifests`
 - `/workspace/.quilt/rlm/mesh`
 
+Only content inside `/workspace` is in scope for RLM execution. If the user wants local files available to the model, `quilt-nightly` must sync them into `/workspace` first.
+
 ## Environment Shape
 
 The base `--rlm` environment is expected to include:
@@ -128,12 +143,16 @@ The base `--rlm` environment is expected to include:
 - `quilt-rlm`
 - common shell and runtime tools
 
+The contract assumes GPU-capable launch scaffolding is available through Quilt when requested. Users should not need a separate RLM-specific accelerator workflow to opt in.
+
 The launcher may forward provider credentials through an allowlist such as:
 
 - `OPENAI_API_KEY`
 - `ANTHROPIC_API_KEY`
 - `OPENROUTER_API_KEY`
 - `PORTKEY_API_KEY`
+
+Provider credentials let the environment call model backends. They do not expand the RLM context boundary beyond the environment-local workspace and persisted artifacts.
 
 ## Protocol Documents
 

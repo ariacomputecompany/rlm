@@ -8,6 +8,8 @@ import json
 import sys
 from pathlib import Path
 
+import jsonschema
+
 root = Path(sys.argv[1])
 
 pairs = [
@@ -25,6 +27,7 @@ for schema_rel, example_rel in pairs:
         raise SystemExit(f"{example_rel}: protocol name mismatch")
     if schema["properties"]["protocol"]["properties"]["version"]["const"] != example["protocol"]["version"]:
         raise SystemExit(f"{example_rel}: protocol version mismatch")
+    jsonschema.Draft202012Validator(schema).validate(example)
 
 print("validated protocol examples")
 PY

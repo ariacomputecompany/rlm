@@ -9,6 +9,20 @@
   "container_id": "ctr_01JABCDEF0123456789",
   "workspace_root": "/workspace",
   "state_root": "/workspace/.quilt/rlm",
+  "execution_boundary": {
+    "repl_scope": "environment_only",
+    "context_scope": "workspace_only",
+    "admitted_context_roots": [
+      "/workspace"
+    ]
+  },
+  "accelerator": {
+    "gpu_passthrough_supported": true,
+    "gpu_requested": false,
+    "gpu_attached": false,
+    "gpu_provider": "qgpu",
+    "device_refs": []
+  },
   "created_at": "2026-01-10T10:00:00Z",
   "updated_at": "2026-01-10T10:02:00Z",
   "active_trajectory_id": "traj_01JABCDEF0123456789"

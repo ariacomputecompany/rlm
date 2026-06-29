@@ -14,6 +14,7 @@
     "environment",
     "status",
     "started_at",
+    "context_paths",
     "artifact_paths"
   ],
   "properties": {
@@ -32,12 +33,20 @@
     "provider": { "type": "string", "minLength": 1 },
     "model": { "type": "string", "minLength": 1 },
     "environment": { "type": "string", "minLength": 1 },
+    "accelerator_mode": {
+      "type": "string",
+      "enum": ["cpu", "gpu"]
+    },
     "status": {
       "type": "string",
       "enum": ["running", "completed", "failed", "cancelled"]
     },
     "started_at": { "type": "string", "format": "date-time" },
     "finished_at": { "type": "string", "format": "date-time" },
+    "context_paths": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
     "artifact_paths": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 }

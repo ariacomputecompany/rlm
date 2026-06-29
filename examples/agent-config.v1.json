@@ -8,6 +8,22 @@
   "agent_id": "worker-1",
   "role": "worker",
   "workspace_root": "/workspace",
+  "execution_boundary": {
+    "repl_scope": "environment_only",
+    "context_scope": "workspace_only",
+    "admitted_context_roots": [
+      "/workspace"
+    ]
+  },
+  "accelerator": {
+    "gpu_passthrough_supported": true,
+    "gpu_requested": true,
+    "gpu_attached": true,
+    "gpu_provider": "qgpu",
+    "device_refs": [
+      "gpu:nvidia0"
+    ]
+  },
   "jets_namespace": "tenant.demo.rlm.mesh_01JABCDEF0123456789",
   "jets_inbox": "tenant.demo.rlm.mesh_01JABCDEF0123456789.worker-1",
   "jets_dlq": "tenant.demo.rlm.mesh_01JABCDEF0123456789.worker-1.dlq",
